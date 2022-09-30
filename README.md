@@ -3,6 +3,12 @@
     node api.js
 
     default run : http://localhost:8080
+    
+#### Config Mysql (file mysql.js)
+    host: "localhost",
+    user: "root", 
+    password: "",
+    database: "pitjarus"
 
 #### API brand
 	get /brand/report
