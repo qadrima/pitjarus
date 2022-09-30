@@ -29,6 +29,10 @@
                 <input type="date" class="form-control" id="filter_date_to" onchange="fetchBrand()">    
             </div>
         </div>
+        <div class="col-md-3 p-3">
+            <button type="button" class="btn btn-dark" onclick="reset()">Reset</button>
+            <button type="button" class="btn btn-dark" onclick="fetchBrand()">Refresh</button>
+        </div>
     </div>
          
   <table class="table table-striped">
@@ -131,10 +135,14 @@
                     });
 
                     if(find) {
-                        arr.push(find.compliance)
+                        arr.push(find.compliance);
+                    } else {
+                        arr.push(0);
                     }
                 }
             });
+
+            console.log(arr);
 
             resultArr.push(arr);
         });
@@ -151,9 +159,11 @@
         resultArr.forEach(h => { 
             htmlBody += '<tr>';
 
+            console.log(h);
+
             h.forEach((val, idx) => {
 
-                val = idx > 0 ? val.toFixed(2) : val;
+                val = idx > 0 ? val.toFixed(2)+'%' : val;
                 // console.log(idx, val);
                 htmlBody += '<td>'+ val +'</td>';
             });
@@ -164,6 +174,14 @@
 
 
         // console.log(resultArr);
+    }
+
+    function reset()
+    {
+        $('#filter_area_id').val('');
+        $('#filter_date_from').val('');
+        $('#filter_date_to').val('');
+        fetchBrand();
     }
 </script>
 

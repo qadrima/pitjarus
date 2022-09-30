@@ -16,11 +16,13 @@ const getReport = async (req, res, next) => {
                 };
             }
 
-            group[item.brand_id].report.push({
-                area_id     : item.area_id,
-                area_name   : item.area_name,
-                compliance  : item.compliance
-            });
+            if (item.compliance) {
+                group[item.brand_id].report.push({
+                    area_id     : item.area_id,
+                    area_name   : item.area_name,
+                    compliance  : item.compliance
+                });
+            }
 
             return group;
         }, {});
